@@ -1,0 +1,43 @@
+<aura:component controller="DebtHoldersService" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+    <!--attributes-->
+    <aura:attribute name="mycolumns" type="List"/> 
+    <aura:attribute name="debtHoldersData" type="DebtHoldersResponseWrapper[]"/>
+    <aura:attribute name="TotalAmount" type="Decimal" default="0"/>
+    <aura:attribute name="TotalRowCount" type="Integer" default="0"/>
+    <aura:attribute name="CheckRowCount" type="Integer" default="0"/>
+    <aura:attribute name="selectedData" type="DebtHoldersResponseWrapper[]"/>
+    <!--events-->
+    <aura:handler name="init" value="{! this }" action="{! c.init }"/>
+    <!--markUp-->
+    <lightning:card title = 'Search by Account Name' >
+        <lightning:datatable aura:id="DebtTable" data="{! v.debtHoldersData }"
+            columns="{! v.mycolumns }"
+            keyField="Id"
+            hideCheckboxColumn="false"
+            onrowselection="{! c.getSelectedData }"
+            onsave="{! c.handleSave }"/>
+        <lightning:button variant="brand" label="Add Debt" title="Brand action" onclick="{! c.addRow}" />
+        <lightning:button variant="brand" label="Remove Debt" title="Brand action" onclick="{! c.removeRow}" />
+        <lightning:card title = 'Total Values' >
+            <div class="slds-clearfix totalAmount">
+               <div class="slds-float_left">
+                    <p>Total Amount: </p>
+               </div>
+                <div class="slds-float_left"> &nbsp;&nbsp;</div>
+               <div class="slds-float_left">
+                    <p>{!v.TotalAmount}</p>
+               </div>
+			</div>
+            <div class="slds-clearfix totalAmount"></div>
+            <div class="slds-clearfix totalAmount">
+               <div class="slds-float_left">
+                    <p>Total Row Count: {!v.TotalRowCount}</p>
+               </div>
+                <div class="slds-float_left">,&nbsp;</div>
+               <div class="slds-float_left">
+                    <p>Check Row Count: {!v.CheckRowCount}</p>
+               </div>
+			</div>
+        </lightning:card>
+    </lightning:card>
+</aura:component>
