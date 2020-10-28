@@ -1,7 +1,7 @@
 public class DebtHoldersService {
     /* @methodName: getDebtHoldersData
-     * @description: 1. this method is response for calling the external service which provides DebtHolders Data
-     *               2. DebtHolderCallout class has doCalloutForDebtHoldersData method which has constructs Http request and does callout
+     * @description: 1. this method is responsible for calling the external service which provides DebtHolders Data
+     *               2. DebtHolderCallout class has doCalloutForDebtHoldersData method which constructs Http request and does callout
      * @parameters: none 
      * @returnType: List<DebtHoldersResponseWrapper>, each debtHolder record data is maintained as DebtHoldersResponseWrapper
      */
